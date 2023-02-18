@@ -1,5 +1,7 @@
 # Week 0 — Billing and Architecture
 
+
+
 I learned about the AWS CLI for the first time and had to set it up in my gitpod environment
 
 **Installing AWS CLI**
@@ -28,5 +30,31 @@ tasks:
 - I created an access key for this user and saved the credentials
 - 
 <img width="1304" alt="Screenshot 2023-02-18 at 5 58 30 AM" src="https://user-images.githubusercontent.com/1076924/219838802-e3b17e7c-49cf-478d-b0e7-a2e576821ff1.png">
+
+
+##Setting environment variables
+In the bash terminal i had to set these credentials
+
+```
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+export AWS_DEFAULT_REGION=us-east-1
+
+```
+Then ensure that gitpod remembers
+```
+gp env AWS_ACCESS_KEY_ID=""
+gp env AWS_SECRET_ACCESS_KEY=""
+gp env AWS_DEFAULT_REGION=us-east-1
+
+```
+
+## Checking that AWS CLI is working and that I am the expected user
+
+`aws sts get-caller-identity`
+
+<img width="675" alt="Screenshot 2023-02-18 at 10 57 38 AM" src="https://user-images.githubusercontent.com/1076924/219854166-c3a7212f-30a5-4bb7-a033-b2e87f9c8539.png">
+
+## Enabling billing
 
 
