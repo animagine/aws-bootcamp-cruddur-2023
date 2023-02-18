@@ -1,5 +1,8 @@
 # Week 0 — Billing and Architecture
 
+Napkin logical design for cruddur app
+
+<img width="940" alt="Screenshot 2023-02-18 at 2 18 53 AM" src="https://user-images.githubusercontent.com/1076924/219855304-ea382121-f9bb-428a-9ee4-7a47a4c95fdb.png">
 
 
 I learned about the AWS CLI for the first time and had to set it up in my gitpod environment
