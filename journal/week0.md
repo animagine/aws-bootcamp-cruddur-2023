@@ -57,4 +57,43 @@ gp env AWS_DEFAULT_REGION=us-east-1
 
 ## Enabling billing
 
+Going to my AWS root account and navigating to the Billing page, under "billing preferences" then seleecting "Receiving Billing Alarms". Saving my selection.
 
+## Creating billing alarms
+
+Before creating an Alarm, an SNS topic needs to be created. In the terminal i ran this code
+
+`aws sns create-topic --name billing-alarm`
+
+<img width="784" alt="Screenshot 2023-02-18 at 11 16 38 AM" src="https://user-images.githubusercontent.com/1076924/219855013-76bdf025-0b09-4007-bcd9-fa9d0c6c7f6e.png">
+
+
+
+```
+aws sns subscribe \
+    --topic-arn TopicARN \
+    --protocol email \
+    --notification-endpoint your@email.com
+```
+
+I will update the parameters with the appropriate entries. Run the code, check my email and confirm the
+my subscription.
+
+## Creating the Alarm
+
+`aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.json`
+
+## Creating an AWS budget
+
+In the terminal i ran this code to get my AWS Account ID
+
+`aws sts get-caller-identity --query Account --output text`
+
+updated the json files and then ran this code in the terminal
+
+```
+aws budgets create-budget \
+    --account-id AccountID \
+    --budget file://aws/json/budget.json \
+    --notifications-with-subscribers file://aws/json/budget-notifications-with-subscribers.json
+```
