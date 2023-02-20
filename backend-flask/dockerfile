@@ -1,0 +1,31 @@
+FROM python:3.10-slim-buster
+
+# Inside Container
+# Make a new directory
+WORKDIR /backend-flask
+
+# Outside Container -> inside container
+# this contains the libraries we want to install to run the aapp
+COPY requirements.txt requirements.txt
+
+#Inside container
+# This installs the python libraries we need for the app
+RUN pip3 install -r requirements.txt
+
+# Outside Container -> Inside container
+# . means everything in the current directory
+# first period means the  . /backend-flask (outside container)
+# Second period means . /backend-flask (Inside container)
+COPY . .
+
+
+# set Environment variables (set ENV VARS)
+# Inside container and will remain set while the container is running
+ENV FLASK_ENV=development
+
+# CMD (Command)
+# Python3 -m flask --host=0.0.0.0 --port=4567
+EXPOSE ${PORT}
+
+#command
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567"]
