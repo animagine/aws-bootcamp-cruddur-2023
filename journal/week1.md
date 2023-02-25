@@ -173,3 +173,13 @@ services:
     working_dir: /home/dynamodblocal
     
 ```
+
+## install Postgres extention to confirm that Postgress is running okay
+ 
+ From the extentions tab , search for postgres and install.
+ 
+ Click on the Databaase icon, navigate to the postgres tab and input the necessary paramaaters, in this instance password was simply 'password'. Hit connect, if it succeeds then postgres is functioning properly.
+ 
+ <img width="1246" alt="Screenshot 2023-02-25 at 1 59 50 AM" src="https://user-images.githubusercontent.com/1076924/221329001-b32900a3-7099-4465-93f0-21b24985f02a.png">
+
+ 
