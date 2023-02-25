@@ -98,6 +98,9 @@ CMD ["npm", "start"]
 
 ## Running multiple containers
 
+5.  Create a docker-compose.yml file in the root directory
+
+
 ```
 version: "3.8"
 services:
@@ -130,3 +133,43 @@ networks:
 <img width="537" alt="Screenshot 2023-02-21 at 12 10 26 AM" src="https://user-images.githubusercontent.com/1076924/221271805-3fc561c8-f775-4169-b6fe-866c77038cee.png">
 
 
+## Adding Postgres and Dynamodb into the existing dockerfile
+
+For Postgres
+
+```
+services:
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+```
+
+
+For DynamoDb Local
+
+```
+services:
+  dynamodb-local:
+    # https://stackoverflow.com/questions/67533058/persist-local-dynamodb-data-in-volumes-lack-permission-unable-to-open-databa
+    # We needed to add user:root to get this working.
+    user: root
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+    
+```
